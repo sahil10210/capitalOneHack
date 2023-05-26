@@ -1,38 +1,29 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Financial Analysis</title>
+  <title>FinancialGPT</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}" />
 </head>
 <body>
   <header>
-    <h1>Financial Analysis</h1>
+    <h1>FinancialGPT</h1>
   </header>
   
   <main>
-    <section id="stock-ticker-section">
-      <div id="stock-ticker">
-        <ul>
-          <li>Stock 1: $100.00</li>
-          <li>Stock 2: $200.00</li>
-          <li>Stock 3: $150.00</li>
-          <!-- Add more stock ticker items as needed -->
-        </ul>
-      </div>
-    </section>
     
     <section id="prediction-section">
-      <h2>Stock Price Prediction</h2>
+      <h2>Banking Information</h2>
       <div id="prediction-container">
-        <form id="prediction-form">
-          <label for="stock-symbol">Stock Symbol:</label>
-          <input type="text" id="stock-symbol" name="stock-symbol" required>
-          <button type="submit">Predict</button>
+
+
+        <form action="/" method = "post" id="prediction-form">
+          <input type="text" id="stock-symbol" placeholder = "Please enter a question" name="animal" required>
+          <button type="submit" value = "Generate names">Generate</button>
         </form>
-        <div id="prediction-result">
-          <!-- Prediction result will be displayed here -->
-        </div>
+        {% if result %}
+        <div id="prediction-result" class = "result"> {{result}} </div>
       </div>
+      {% endif %}
     </section>
 
     <section id="comparison-section">
