@@ -25,10 +25,10 @@ def index():
 def generate_prompt(animal):
     return """Suggest financial advise for a human living in the United States.
 
-Animal: Cat
-Names: Captain Sharpclaw, Agent Fluffball, The Incredible Feline
-Animal: Dog
-Names: Ruff the Protector, Wonder Canine, Sir Barks-a-Lot
+Human: I have 0 dollars in my bank account.
+Names: Save money
+Human: I have 10000000 dollars in my bank account
+Names: Invest
 Animal: {}
 Names:""".format(
         animal.capitalize()
