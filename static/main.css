@@ -39,6 +39,49 @@ h2 {
   color: #004977;
 }
 
+#stock-ticker-section {
+  overflow: hidden;
+}
+
+#stock-ticker {
+  background-color: #f5f5f5;
+  padding: 5px;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+#stock-ticker ul {
+  list-style: none;
+  display: inline-block;
+  animation: ticker 15s linear infinite;
+}
+
+#stock-ticker li {
+  display: inline-block;
+  margin-right: 30px;
+  color: #333;
+  font-weight: 600;
+  animation: ticker-item 15s linear infinite;
+}
+
+@keyframes ticker {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes ticker-item {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
 #prediction-container {
   margin-bottom: 20px;
 }
@@ -114,43 +157,4 @@ footer {
 
 footer p {
   color: #fff;
-}
-
-/* Chart Styles */
-
-#stock-table {
-  display: table;
-  width: 100%;
-  border-collapse: collapse;
-}
-
-#stock-table thead {
-  display: table-header-group;
-  background-color: #004977;
-  color: #fff;
-}
-
-#stock-table tbody {
-  display: table-row-group;
-}
-
-#stock-table th,
-#stock-table td {
-  display: table-cell;
-  padding: 8px;
-  text-align: center;
-}
-
-#stock-table th:first-child,
-#stock-table td:first-child {
-  text-align: left;
-}
-
-#stock-table tr:nth-child(even) {
-  background-color: #f5f5f5;
-}
-
-#stock-table tr:hover {
-  background-color: #e9f0f3;
-  cursor: pointer;
 }
