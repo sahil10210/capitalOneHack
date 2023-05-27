@@ -12,3 +12,7 @@ data = response.json()
 
 with open('accounts.json', 'w') as file:
     json.dump(data, file)
+
+"make a logout route"
+
+app.route("/logout")

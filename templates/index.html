@@ -14,17 +14,17 @@
     <section id="prediction-section">
       <h2>Financial Guidance</h2>
       <div id="prediction-container">
-
-
-        <form action="/" method = "post" id="prediction-form">
-          <input type="text" id="stock-symbol" placeholder = "Please enter your financial situation" name="human" required>
-          <button type="submit" value = "Generate names">Generate</button>
+        <form action="/" method="post" id="prediction-form">
+          <input type="text" id="stock-symbol" placeholder="Please enter your financial situation" name="human" required>
+          <button type="submit" value="Generate names">Generate</button>
         </form>
+        <div id="loading-text"></div> <!-- Placeholder for "generating..." text -->
         {% if result %}
-        <div id="prediction-result" class = "result"> {{result}} </div>
+        <div id="prediction-result" class="result">{{ result }}</div>
+        {% endif %}
       </div>
-      {% endif %}
     </section>
+    
 
     <section id="comparison-section">
       <h2>Bank Details</h2>
@@ -42,7 +42,7 @@
               <td>$150.00</td>
             </tr>
             <tr>
-              <td>Depsoit</td>
+              <td>Deposit</td>
               <td>$155.75</td>
             </tr>
             <tr>
@@ -58,7 +58,7 @@
               <td>$160.20</td>
             </tr>
             <tr>
-              <td>Widthdrawal</td>
+              <td>Withdrawal</td>
               <td>$160.20</td>
             </tr>
             <!-- Add more rows as needed -->
@@ -69,9 +69,24 @@
   </main>
 
   <footer>
-    <p>© 2023 Financial Analysis App</p>
+    <p>© 2023 FinancialGPT</p>
   </footer>
   
   <script src="script.js"></script>
+<script>
+  document.getElementById("prediction-form").addEventListener("submit", function(event) {
+    event.preventDefault(); // Prevent form submission
+
+    // Display "Generating..." text
+    document.getElementById("loading-text").innerText = "Generating...";
+
+    // Delay form submission to allow the text to be displayed
+    setTimeout(function() {
+      event.target.submit(); // Submit the form after a delay
+    }, 500); // Adjust the delay time if needed
+  });
+</script>
+
+  
 </body>
 </html>

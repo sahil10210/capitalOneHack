@@ -19,10 +19,10 @@ def index():
             max_tokens=MAX_RESPONSE_LENGTH,  # Limit the response length
         )
         result = truncate_text(response.choices[0].text)
-        return redirect(url_for("index", result=result))
+        return redirect(url_for("login", result=result))
 
     result = request.args.get("result")
-    return render_template("index.html", result=result)
+    return render_template("login.html", result=result)
 
 
 def generate_prompt(human):
@@ -48,11 +48,6 @@ Response: Partner with Capital One's Private Wealth Management team to develop a
 
 Human: {}
 Response:""".format(human.capitalize())
-
-
-
-
-
 
 
 def truncate_text(text):
