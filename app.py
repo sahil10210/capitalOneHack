@@ -1,9 +1,10 @@
 import os
 import openai
 import requests
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, session
 
 app = Flask(__name__)
+app.secret_key = os.urandom(24)
 openai.api_key = os.getenv("OPENAI_API_KEY")
 MAX_RESPONSE_LENGTH = 500  # Define the maximum length of the response to display
 
@@ -21,6 +22,7 @@ def home():
 # Define logout route to handle logout action
 @app.route('/logout')
 def logout():
+    session.pop("id", None)  # Remove the 'id' from the session
     return redirect('/')
 
 
@@ -41,16 +43,21 @@ def login():
             nickname = old_nickname.replace("'s Account", "")
 
             oldbalance = account["balance"]
-            balance =  "{:.2f}".format(oldbalance) 
+            balance = "{:.2f}".format(oldbalance)
             break
-    # If account is found, render the index.html template with the account details
+    # If account is found, store the ID in the session and render the index.html template with the account details
     if account_found:
+        session["id"] = id  # Store the ID in the session
         return render_template('index.html', nickname=nickname, balance=balance, account_found=True)
     else:
         return render_template('login.html', account_found=False)
 
+
 @app.route("/openaifunc", methods=["GET", "POST"])
 def openaifunc():
+    nickname = ''
+    balance = 0
+
     if request.method == "POST":
         human = request.form["human"]
         response = openai.Completion.create(
@@ -60,10 +67,32 @@ def openaifunc():
             max_tokens=MAX_RESPONSE_LENGTH,  # Limit the response length
         )
         result = truncate_text(response.choices[0].text)
-        return render_template("index.html", result=result)
+        id = session.get("id")
+        if id:
+            for account in data:
+                if account["_id"] == id:
+                    old_nickname = account["nickname"]
+                    nickname = old_nickname.replace("'s Account", "")
+
+                    oldbalance = account["balance"]
+                    balance = "{:.2f}".format(oldbalance)
+                    break
+        return render_template("index.html", nickname=nickname, balance=balance, result=result)
+
+    # Retrieve the ID from the session
+    id = session.get("id")
+    if id:
+        for account in data:
+            if account["_id"] == id:
+                old_nickname = account["nickname"]
+                nickname = old_nickname.replace("'s Account", "")
+
+                oldbalance = account["balance"]
+                balance = "{:.2f}".format(oldbalance)
+                break
 
     result = request.args.get("result")
-    return render_template("index.html", result=result)
+    return render_template("index.html", nickname=nickname, balance=balance, result=result)
 
 
 def generate_prompt(human):
