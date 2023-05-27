@@ -14,10 +14,10 @@
     <section id="prediction-section">
       <h2>Financial Guidance</h2>
       <div id="prediction-container">
-        <form action="/" method="post" id="prediction-form">
+        <form method="post" action="{{ url_for('openaifunc') }}" id="prediction-form">
           <input type="text" id="stock-symbol" placeholder="Please enter your financial situation" name="human" required>
           <button type="submit" value="Generate names">Generate</button>
-        </form>
+        </form>    
         <div id="loading-text"></div> <!-- Placeholder for "generating..." text -->
         {% if result %}
         <div id="prediction-result" class="result">{{ result }}</div>
@@ -38,12 +38,12 @@
           </thead>
           <tbody>
             <tr>
-              <td>ATM</td>
-              <td>$150.00</td>
+              <td>User Name</td>
+              <td>{{nickname}}</td>
             </tr>
             <tr>
               <td>Deposit</td>
-              <td>$155.75</td>
+              <td>${{balance}}</td>
             </tr>
             <tr>
               <td>Loan</td>
