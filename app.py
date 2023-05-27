@@ -26,16 +26,33 @@ def index():
 
 
 def generate_prompt(human):
-    return """Suggest financial advice for a human living in the United States.
+    return """Suggest financial advice for a human living in the United States. Provide detailed recommendations based on different financial situations, including leveraging specific Capital One services.
+
+Human: I am struggling to manage my expenses.
+Response: If you're having difficulty managing expenses, consider using Capital One's budgeting tools like the Capital One Mobile App to track your spending. Create a detailed budget that includes essential expenses and discretionary spending. Reach out to Capital One's customer support for personalized guidance.
+
+Human: I want to start saving for the future.
+Response: To begin saving for the future, open a Capital One 360 Savings Account. Set specific savings goals and establish automatic transfers from your checking account. Capital One provides online tools to monitor your progress. Explore Capital One's investment options to grow your savings.
+
+Human: I am considering purchasing a home.
+Response: If you're planning to buy a home, reach out to Capital One Home Loans for mortgage options and assistance. Use Capital One's mortgage calculator to estimate payments. Capital One's Home Loans team can guide you through the process, including pre-qualification, application, and closing.
+
+Human: I am interested in investing in the stock market.
+Response: If you're considering investing in the stock market, Capital One Investing provides a platform for online trading and investment research. Open a Capital One Investing account to access a wide range of investment options. Utilize Capital One's research tools and educational resources. Consult with Capital One's investment advisors for personalized guidance.
 
 Human: I have 0 dollars in my bank account.
-Response: Save money
-Human: I have 10000000 dollars in my bank account
-Response: Invest 200,000 into a Roth IRA account, save 200,000, put 300,000 into investments, and use the rest of the money for personal expenses
+Response: Focus on saving money diligently. Consider opening a Capital One 360 Savings Account. Create a budget to track expenses and identify areas to cut back. Explore government assistance programs. Look for ways to reduce costs on essential items. Gradually build an emergency fund.
+
+Human: I have 10,000,000 dollars in my bank account.
+Response: Partner with Capital One's Private Wealth Management team to develop a comprehensive investment strategy. Allocate funds towards long-term investments like stocks, bonds, and real estate. Consider retirement savings, tax planning, and philanthropic opportunities.
+
 Human: {}
-Response:""".format(
-        human.capitalize()
-    )
+Response:""".format(human.capitalize())
+
+
+
+
+
 
 
 def truncate_text(text):
