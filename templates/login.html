@@ -49,9 +49,9 @@
 <body>
   <div class="container">
     <h2>Sign In</h2>
-    <form>
-      <label for="username">User-ID</label>
-      <input type="text" id="username" name="username" placeholder="Enter your username">
+    <form action="{{ url_for('index') }}" method="post">
+      <label for="id">User-ID</label>
+      <input type="text" id="id" name="id" placeholder="Enter your user ID" required>
       
       <button type="submit">Sign In</button>
     </form>
