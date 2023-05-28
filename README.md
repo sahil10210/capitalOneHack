@@ -56,5 +56,5 @@ Join FinanceForDummies.tech today and embark on your journey towards financial s
  ## Contributers Section
  Sahil Shah (@sahil102103)
  Akshat Chavan (@akshatchavann)
- Anay Kothana ()
+ Anay Kothana (@akothana7)
  Mohin Patel (@mohinpatell)
