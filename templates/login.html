@@ -3,58 +3,204 @@
 <head>
   <title>Sign In</title>
   <style>
+    @keyframes slideIn {
+      from {
+        transform: translateX(-100%);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+    
     body {
       font-family: Arial, sans-serif;
       background-color: #f1f1f1;
     }
     
     .container {
-      width: 300px;
-      padding: 16px;
+      width: 400px;
+      padding: 40px;
       background-color: #fff;
       margin: 0 auto;
       margin-top: 100px;
       border: 1px solid #ccc;
       border-radius: 4px;
+      animation: slideIn 0.5s ease-in-out forwards;
     }
     
     .container h2 {
       text-align: center;
+      color: #004977;
     }
     
-    .container input[type=text], .container input[type=password] {
+    .container .logo {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    
+    .container .logo img {
+      width: 200px;
+    }
+    
+    .container label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: #004977;
+    }
+    
+    .container input[type=text] {
       width: 100%;
-      padding: 12px 20px;
-      margin: 8px 0;
-      display: inline-block;
+      padding: 12px;
+      margin-bottom: 20px;
       border: 1px solid #ccc;
+      border-radius: 4px;
       box-sizing: border-box;
+      font-size: 16px;
+    }
+    
+    .container .register-link {
+      text-align: center;
+      margin-top: 20px;
+      color: #004977;
     }
     
     .container button {
       background-color: #004977;
       color: white;
       padding: 14px 20px;
-      margin: 8px 0;
+      margin-top: 20px;
       border: none;
+      border-radius: 4px;
       cursor: pointer;
       width: 100%;
+      font-size: 16px;
     }
     
     .container button:hover {
       opacity: 0.8;
     }
+    
+    /* New CSS for the additional div boxes */
+    .additional-boxes {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 40px;
+    }
+    
+    .additional-box {
+      flex-basis: calc(50% - 10px);
+      background-color: #fff;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      padding: 20px;
+    }
+    
+    /* CSS for light mode */
+    body.light-mode {
+      background-color: #f1f1f1;
+      color: #000;
+    }
+    
+    /* CSS for dark mode */
+    body.dark-mode {
+      background-color: #222;
+      color: #fff;
+    }
+    
+    /* Toggle switch styles */
+    .toggle-mode {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    
+    .toggle-mode label {
+      margin-right: 10px;
+    }
+    
+    .toggle-mode input[type="checkbox"] {
+      display: none;
+    }
+    
+    .toggle-mode .toggle-slider {
+      position: relative;
+      display: inline-block;
+      width: 40px;
+      height: 20px;
+      background-color: #ccc;
+      border-radius: 20px;
+    }
+    
+    .toggle-mode .toggle-slider:before {
+      content: "";
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background-color: #fff;
+      top: 2px;
+      left: 2px;
+      transition: 0.2s;
+    }
+    
+    .toggle-mode input[type="checkbox"]:checked + .toggle-slider {
+      background-color: #004977;
+    }
+    
+    .toggle-mode input[type="checkbox"]:checked + .toggle-slider:before {
+      transform: translateX(20px);
+    }
   </style>
 </head>
-<body>
+<body class="light-mode">
   <div class="container">
+    <div class="logo">
+      <img src="static/Capital-one-logo-2.jpg" alt="Logo">
+    </div>
     <h2>Sign In</h2>
     <form action="{{ url_for('login') }}" method="post">
       <label for="id">User-ID</label>
       <input type="text" id="id" name="id" placeholder="Enter your user ID" required>
       
       <button type="submit">Sign In</button>
+      
+      <div class="register-link">
+        Don't have an account? <a href="#">Register</a>
+      </div>
     </form>
+    
+    <div class="additional-boxes">
+      <div class="additional-box">
+        <!-- Content for the first additional box -->
+      </div>
+      
+      <div class="additional-box">
+        <!-- Content for the second additional box -->
+      </div>
+    </div>
+    <div class="toggle-mode">
+      <label for="mode-switch">Toggle mode:</label>
+      <input type="checkbox" id="mode-switch">
+      <div class="toggle-slider"></div>
+    </div>
   </div>
+
+  <script>
+    const modeSwitch = document.querySelector("#mode-switch");
+    const body = document.querySelector("body");
+
+    modeSwitch.addEventListener("change", function() {
+      if (this.checked) {
+        body.classList.remove("light-mode");
+        body.classList.add("dark-mode");
+      } else {
+        body.classList.remove("dark-mode");
+        body.classList.add("light-mode");
+      }
+    });
+  </script>
 </body>
 </html>
