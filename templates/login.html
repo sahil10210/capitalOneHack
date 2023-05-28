@@ -171,21 +171,23 @@
         Don't have an account? <a href="#">Register</a>
       </div>
     </form>
-    
-    <div class="additional-boxes">
-      <div class="additional-box">
-        <!-- Content for the first additional box -->
-      </div>
-      
-      <div class="additional-box">
-        <!-- Content for the second additional box -->
-      </div>
+     
     </div>
     <div class="toggle-mode">
       <label for="mode-switch">Toggle mode:</label>
       <input type="checkbox" id="mode-switch">
       <div class="toggle-slider"></div>
     </div>
+  </div>
+  <div class="map">
+    <h2>Find ATM's Near You</h2>
+    <form method="post" action="{{ url_for('map') }}">
+      <label for="id">Address</label>
+      <input type="text" id="add" name="add" placeholder="Enter your address" required>
+      <label for="radius">Radius</label>
+      <input type="text" id="radius" name="radius" placeholder="Enter your radius" required>
+      <button type="submit">Find ATM's</button>
+    </form>
   </div>
 
   <script>
