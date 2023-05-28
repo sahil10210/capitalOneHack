@@ -21,14 +21,16 @@
     
     .container {
       width: 400px;
-      padding: 40px;
+      padding: 20px 30px;
       background-color: #fff;
       margin: 0 auto;
-      margin-top: 100px;
+      margin-top: 75px;
       border: 1px solid #ccc;
-      border-radius: 4px;
+      border-radius: 15px;
       animation: slideIn 0.5s ease-in-out forwards;
+      text-align: center;
     }
+
     
     .container h2 {
       text-align: center;
@@ -100,62 +102,109 @@
     
     /* CSS for light mode */
     body.light-mode {
-      background-color: #f1f1f1;
+      background-image: url("https://upload.wikimedia.org/wikipedia/commons/5/5c/Sun-in-the-sky.jpg");
       color: #000;
     }
     
     /* CSS for dark mode */
     body.dark-mode {
-      background-color: #222;
+      background-image: url('https://wallpapercrafter.com/desktop/15367-starry-sky-stars-night-shine-dark-4k.jpg');
       color: #fff;
     }
     
     /* Toggle switch styles */
-    .toggle-mode {
-      display: flex;
-      align-items: center;
-      margin-bottom: 10px;
-    }
-    
-    .toggle-mode label {
-      margin-right: 10px;
-    }
-    
-    .toggle-mode input[type="checkbox"] {
-      display: none;
-    }
-    
-    .toggle-mode .toggle-slider {
-      position: relative;
-      display: inline-block;
-      width: 40px;
-      height: 20px;
-      background-color: #ccc;
-      border-radius: 20px;
-    }
-    
-    .toggle-mode .toggle-slider:before {
-      content: "";
-      position: absolute;
-      width: 16px;
-      height: 16px;
-      border-radius: 50%;
+.toggle-mode {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Center horizontally */
+  margin-bottom: 10px;
+}
+
+.toggle-mode label {
+  text-align: center;
+  margin-right: 5px; /* Adjust spacing */
+}
+
+.toggle-mode input[type="checkbox"] {
+  display: none;
+}
+
+.toggle-mode .toggle-slider {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 20px;
+  background-color: #ccc;
+  border-radius: 20px;
+}
+
+.toggle-mode .toggle-slider:before {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: #fff;
+  top: 2px;
+  left: 2px;
+  transition: 0.2s;
+}
+
+.toggle-mode input[type="checkbox"]:checked + .toggle-slider {
+  background-color: #004977;
+}
+
+.toggle-mode input[type="checkbox"]:checked + .toggle-slider:before {
+  transform: translateX(20px);
+}
+
+    .map{
+      width: 400px;
+      padding: 20px 30px;
       background-color: #fff;
-      top: 2px;
-      left: 2px;
-      transition: 0.2s;
+      margin: 10px auto;
+      border: 1px solid #ccc;
+      border-radius: 15px;
+      animation: slideIn 0.5s ease-in-out forwards;
+      text-align: center;
+      color: #004977
     }
-    
-    .toggle-mode input[type="checkbox"]:checked + .toggle-slider {
+
+    .map input[type=text] {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      font-size: 13px;
+    }
+    .map button {
       background-color: #004977;
+      color: white;
+      padding: 8px 20px;
+      margin-top: 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      width: 100%;
+      font-size: 13px;
     }
-    
-    .toggle-mode input[type="checkbox"]:checked + .toggle-slider:before {
-      transform: translateX(20px);
+
+    #radius #add{
+      width: fit-content;
+      size: 100px;
     }
+
+    #mode-switch{
+      text-align: center;
+    }
+
   </style>
+
 </head>
 <body class="light-mode">
+  <div class="backdrop-box">
   <div class="container">
     <div class="logo">
       <img src="static/Capital-one-logo-2.jpg" alt="Logo">
@@ -167,27 +216,32 @@
       
       <button type="submit">Sign In</button>
       
-      <div class="register-link">
-        Don't have an account? <a href="#">Register</a>
-      </div>
     </form>
-     
-    </div>
-    <div class="toggle-mode">
-      <label for="mode-switch">Toggle mode:</label>
-      <input type="checkbox" id="mode-switch">
-      <div class="toggle-slider"></div>
-    </div>
   </div>
+    </div>
+    </body>
+
+
   <div class="map">
     <h2>Find ATM's Near You</h2>
     <form method="post" action="{{ url_for('map') }}">
+      <div>
       <label for="id">Address</label>
       <input type="text" id="add" name="add" placeholder="Enter your address" required>
+      </div>
+      <div>
       <label for="radius">Radius</label>
       <input type="text" id="radius" name="radius" placeholder="Enter your radius" required>
-      <button type="submit">Find ATM's</button>
+      <div>      
+        <button type="submit" >Find ATM's</button>
+      </div>
+      </div>
     </form>
+  </div>
+  <div class="toggle-mode">
+    <label for="mode-switch">Light/Dark Mode</label>
+    <input type="checkbox" id="mode-switch">
+    <div class="toggle-slider"></div>
   </div>
 
   <script>

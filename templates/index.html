@@ -12,6 +12,7 @@
   <main>
     
     <section id="prediction-section">
+      <h1 class = "greeting">Good afternoon, {{nickname}}</h1>
       <h2>Financial Guidance</h2>
       <div id="prediction-container">
         <form method="post" action="{{ url_for('openaifunc') }}" id="prediction-form">
@@ -38,16 +39,12 @@
           </thead>
           <tbody>
             <tr>
-              <td>User Name</td>
-              <td>{{nickname}}</td>
-            </tr>
-            <tr>
               <td>Balance</td>
               <td>${{balance}}</td>
             </tr>
             <tr>
               <td>Loan Information</td>
-              <td>{{loans}}</td>
+              <td>${{loans}}</td>
             </tr>
             <tr>
               <td>Debt Amount</td>
@@ -55,11 +52,11 @@
             </tr>
             <tr>
               <td>Bills Information</td>
-              <td>${{bills}}</td>
+              <td>{{bills}}</td>
             </tr>
             <tr>
               <td>Credit Score</td>
-              <td>${{creditscore}}</td>
+              <td>{{creditscore}}</td>
             </tr>
             <!-- Add more rows as needed -->
           </tbody>

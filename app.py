@@ -262,7 +262,18 @@ def map():
     long3 = result[2]['geocode']['lng']
     lat3 = result[2]['geocode']['lat']
 
-    return render_template('map.html', address=address, radius=radius, atm1=atm1, long1=long1, lat1=lat1, atm2=atm2, long2=long2, lat2=lat2, atm3=atm3, long3=long3, lat3=lat3, maps_found=True)
+    startaddress = address.replace(" ", "+")
+
+
+    address1=atm1.replace(" ", "+")
+    address2=atm2.replace(" ", "+")
+    address3=atm3.replace(" ", "+")
+
+    link1 = f"https://www.google.com/maps/dir/{startaddress}/{address1}"
+    link2 = f"https://www.google.com/maps/dir/{startaddress}/{address2}"
+    link3 = f"https://www.google.com/maps/dir/{startaddress}/{address3}"
+
+    return render_template('map.html', address=address, link1=link1, link2=link2,link3=link3, radius=radius, atm1=atm1, long1=long1, lat1=lat1, atm2=atm2, long2=long2, lat2=lat2, atm3=atm3, long3=long3, lat3=lat3, maps_found=True)
 
 
 if __name__ == "__main__":

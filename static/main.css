@@ -172,3 +172,8 @@ footer p {
   padding-bottom: 10px;
 }
 
+.greeting{
+  color: black;
+  font-weight: 700;
+  font-size: 27px;
+}

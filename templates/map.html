@@ -1,30 +1,43 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>ATM Maps</title>
+  <title>FinancialGPT</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='map.css') }}" />
 </head>
+
 <body>
-    <h1>ATM Maps</h1>
-    <p>Address: {{ address }}</p>
-    <p>Radius: {{ radius }}</p>
+
+<div class="box">
+    <h1 class="text">ATM Maps</h1>
+    <p class="text">Address: {{ address }}</p>
+    <p class="text">Radius: {{ radius }}</p>
     
-    <h2>Top 3 ATMs:</h2>
+    <h2 class="text">Top 3 ATMs:</h2>
     <ol>
-        <li>{{ atm1 }}</li>
-        <ul>
-            <li>Longitude: {{ long1 }}</li>
-            <li>Latitude: {{ lat1 }}</li>
-        </ul>
-        <li>{{ atm2 }}</li>
-        <ul>
-            <li>Longitude: {{ long2 }}</li>
-            <li>Latitude: {{ lat2 }}</li>
-        </ul>
-        <li>{{ atm3 }}</li>
-        <ul>
-            <li>Longitude: {{ long3 }}</li>
-            <li>Latitude: {{ lat3 }}</li>
-        </ul>
+        <div class="bubble">
+            <li>{{ atm1 }}</li>
+            <ul>
+                <li>Longitude: {{ long1 }}</li>
+                <li>Latitude: {{ lat1 }}</li>
+            </ul>
+            <a class="button" href="{{ link1 }}">Get Directions</a>
+        </div>
+        <div class="bubble">
+            <li>{{ atm2 }}</li>
+            <ul>
+                <li>Longitude: {{ long2 }}</li>
+                <li>Latitude: {{ lat2 }}</li>
+            </ul>
+            <a class="button" href="{{ link2 }}">Get Directions</a>
+        </div>
+        <div class="bubble">
+            <li>{{ atm3 }}</li>
+            <ul>
+                <li>Longitude: {{ long3 }}</li>
+                <li>Latitude: {{ lat3 }}</li>
+            </ul>
+            <a class="button" href="{{ link3 }}">Get Directions</a>
+        </div>
     </ol>
+</div>
 </body>
-</html>
