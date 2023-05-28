@@ -51,3 +51,10 @@ To get started with FinanceForDummies.tech, follow these steps:
 
 
 Join FinanceForDummies.tech today and embark on your journey towards financial success!
+
+
+ ## Contributers Section
+ Sahil Shah (@sahil102103)
+ Akshat Chavan (@akshatchavann)
+ Anay Kothana ()
+ Mohin Patel (@mohinpatell)
