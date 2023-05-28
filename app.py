@@ -2,6 +2,8 @@ import os
 import openai
 import requests
 from flask import Flask, render_template, request, redirect, url_for, session
+import json
+
 
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
@@ -11,7 +13,15 @@ MAX_RESPONSE_LENGTH = 500  # Define the maximum length of the response to displa
 # Get all the data from the API
 url = 'http://api.nessieisreal.com/enterprise/accounts?key=e1cac451319e9263333280ff4a5b28f6'
 response = requests.get(url)
-data = response.json()['results']  # Access the 'results' key in the JSON response
+initilizingjsondata = response.json()['results']  # Access the 'results' key in the JSON response
+
+# Open the accounts.json file
+with open('accounts.json') as json_file:
+    # Load the JSON data from the file
+    data = json.load(json_file)
+
+# Access the 'results' key in the JSON data
+data = data['results']
 
 # Define home page route
 @app.route('/')
@@ -33,6 +43,11 @@ def login():
     account_found = False
     nickname = ''
     balance = 0
+    creditscore = ''
+    loans = ''
+    debt = ''
+    bills = ''
+
     # Get the account ID from the form
     id = request.form["id"]
     # Loop through the data to find the account with the ID
@@ -44,12 +59,19 @@ def login():
 
             oldbalance = account["balance"]
             balance = "{:.2f}".format(oldbalance)
+
+            creditscore = account["Creditscore"]
+
+            loans = account["Loans"]
+            debt = account["Debt"]
+            bills = account["Bills"]
+
             break
     # If account is found, store the ID in the session and render the index.html template with the account details
     if account_found:
         session["id"] = id  # Store the ID in the session
-        return render_template('index.html', nickname=nickname, balance=balance, account_found=True)
-    else:
+        return render_template('index.html', nickname=nickname, balance=balance, creditscore=creditscore,loans=loans,debt=debt,bills=bills, account_found=True)
+    else: 
         return render_template('login.html', account_found=False)
 
 @app.route("/openaifunc", methods=["GET", "POST"])
@@ -77,8 +99,15 @@ def openaifunc():
 
                     oldbalance = account["balance"]
                     balance = "{:.2f}".format(oldbalance)
+                    creditscore = account["Creditscore"]
+
+                    loans = account["Loans"]
+                    debt = account["Debt"]
+                    bills = account["Bills"]
+
+
                     break
-        return render_template("index.html", nickname=nickname, balance=balance, result=result)
+        return render_template('index.html', nickname=nickname, balance=balance, creditscore=creditscore,loans=loans,debt=debt,bills=bills, account_found=True, result=result)
 
     # Retrieve the ID from the session
     id = session.get("id")
@@ -90,10 +119,15 @@ def openaifunc():
 
                 oldbalance = account["balance"]
                 balance = "{:.2f}".format(oldbalance)
+                loans = account["Loans"]
+                debt = account["Debt"]
+                bills = account["Bills"]
+
+
                 break
 
     result = request.args.get("result")
-    return render_template("index.html", nickname=nickname, balance=balance, result=result)
+    return render_template('index.html', nickname=nickname, balance=balance, creditscore=creditscore,loans=loans,debt=debt,bills=bills, account_found=True, result=result)
 
 
 def generate_prompt(human, nickname, balance):
