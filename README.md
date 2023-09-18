@@ -24,10 +24,10 @@ FinanceForDummies.tech utilizes a combination of powerful tools and technologies
  These technologies include:
 
 
-Nessie API: We integrate banking data and features using the Capital One's Nessie API to get user information including name, balance, address, etc. 
-OpenAI API: We use the Davinci – 003 model in order to fine tune responses based on user variables created and passed through by Nessie API and solutions offered by CapitalOne.
-Azure: Instead We hosted our product in Azure so the file and variables can be run and stored in the cloud. This allows for future scalability and broadens the audience that can enjoy our product.
-Programming languages and Tools: We use Flask, HTML, CSS, JavaScript, Python, JSON, Azure to develop and enhance our website.
+- Nessie API: We integrate banking data and features using the Capital One's Nessie API to get user information including name, balance, address, etc. 
+- OpenAI API: We use the Davinci – 003 model in order to fine tune responses based on user variables created and passed through by Nessie API and solutions offered by CapitalOne.
+- Azure: Instead We hosted our product in Azure so the file and variables can be run and stored in the cloud. This allows for future scalability and broadens the audience that can enjoy our - product.
+- Programming languages and Tools: We use Flask, HTML, CSS, JavaScript, Python, JSON, Azure to develop and enhance our website.
 
 
 
